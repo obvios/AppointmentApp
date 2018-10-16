@@ -2,6 +2,8 @@
 package com.example.ericpalma.calendarapp;
 
 public class User {
-    string firstName;
-    string lastName;
+    /*Properties*/
+    String firstName;
+    String lastName;
+    String password;
 }
