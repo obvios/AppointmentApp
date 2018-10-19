@@ -1,21 +1,25 @@
 /*User class*/
 package com.example.ericpalma.calendarapp;
 
+import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
+
+@Entity(primaryKeys = {"firstName","lastName"})
 public class User {
-    /*Properties*/
+    /*Primary Keys*/
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
-    private String password;
 
-    /*Initialize instance*/
-    public User(String f, String l, String pass){
-        this.firstName = f;
-        this.lastName = l;
-        this.password = pass;
+    /*Setters*/
+    public User(String first, String last){
+        this.firstName = first;
+        this.lastName = last;
     }
 
-    public void changePassword(String p){
-        if(!p.equals(""))
-            this.password = p;
-    }
+    /*getters*/
+    public String getFirstName(){return this.firstName};
+    public String getLastName(){return this.lastName};
+
 }//end of User
