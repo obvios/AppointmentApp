@@ -3,9 +3,9 @@ package com.example.ericpalma.calendarapp;
 
 public class User {
     /*Properties*/
-    String firstName;
-    String lastName;
-    String password;
+    private String firstName;
+    private String lastName;
+    private String password;
 
     /*Initialize instance*/
     public User(String f, String l, String pass){
