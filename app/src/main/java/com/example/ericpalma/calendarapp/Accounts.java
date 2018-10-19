@@ -2,6 +2,10 @@ package com.example.ericpalma.calendarapp;
 
 import android.arch.persistence.room.*;
 
+@Entity(foreignKeys = @ForeignKey(entity = User.class,
+                                    parentColumns = {"firstname","lastname"},
+                                    childColumns = {"userFirstName","userLastName"},
+                                    onDelete = ForeignKey.CASCADE))
 public class Accounts {
     /*Properties*/
     @PrimaryKey
@@ -12,16 +16,24 @@ public class Accounts {
     private String calendarType;
     @ColumnInfo
     private String calendarColor;
+    @ColumnInfo
+    private String userFirstName;
+    @ColumnInfo
+    private String userLastName;
 
     /*Setters*/
-    public Accounts(String usrName, String pass){
+    public Accounts(String usrFirst, String usrLast, String usrName, String pass){
+        this.userFirstName = usrFirst;
+        this.userLastName = usrLast;
         this.username = usrName;
         this.password = pass;
         this.calendarType = "Month";
         this.calendarColor = "silver";
     }
 
-    public Accounts(String usrName, String pass, String calType, String calColor){
+    public Accounts(String usrFirst, String usrLast, String usrName, String pass, String calType, String calColor){
+        this.userFirstName = usrFirst;
+        this.userLastName = usrLast;
         this.username = usrName;
         this.password = pass;
         this.calendarType = calType;
