@@ -64,4 +64,12 @@ public class Accounts {
     public String getCalendarColor() {
         return this.calendarColor;
     }
+
+    public String getUserFirstName() {
+        return this.userFirstName;
+    }
+
+    public String getUserLastName() {
+        return this.userLastName;
+    }
 }

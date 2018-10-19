@@ -3,5 +3,5 @@ import android.arch.persistence.room.*;
 
 @Entity
 public class Appointments {
-    
+
 }
