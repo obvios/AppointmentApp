@@ -19,7 +19,7 @@ public class User {
     }
 
     /*getters*/
-    public String getFirstName(){return this.firstName};
-    public String getLastName(){return this.lastName};
+    public String getFirstName(){return this.firstName;}
+    public String getLastName(){return this.lastName;}
 
 }//end of User
