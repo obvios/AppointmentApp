@@ -1,7 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
 import android.arch.persistence.room.*;
-import android.support.annotation.NonNull;
 
 public class Accounts {
     /*Properties*/
