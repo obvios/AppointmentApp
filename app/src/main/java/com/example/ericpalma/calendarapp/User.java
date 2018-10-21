@@ -18,6 +18,14 @@ public class User {
         this.lastName = last;
     }
 
+    public void setFirstName(String first){
+        this.firstName = first;
+    }
+
+    public void setLastName(String last){
+        this.lastName = last;
+    }
+
     /*getters*/
     public String getFirstName(){return this.firstName;}
     public String getLastName(){return this.lastName;}
