@@ -2,10 +2,7 @@ package com.example.ericpalma.calendarapp;
 
 import android.arch.persistence.room.*;
 
-@Entity(foreignKeys = @ForeignKey(entity = User.class,
-                                    parentColumns = {"firstname","lastname"},
-                                    childColumns = {"userFirstName","userLastName"},
-                                    onDelete = ForeignKey.CASCADE))
+@Entity
 public class Accounts {
     /*Properties*/
     @PrimaryKey
