@@ -9,7 +9,7 @@ public interface AccountsDao {
     void insertUserAccount(Accounts userAccount1);
 
     @Insert
-    void insertAll(Accounts ... userAccounts);
+    void insertAllAccounts(Accounts ... userAccounts);
 
     @Query("SELECT * FROM Accounts")
     List<Accounts> getAllAccounts();
