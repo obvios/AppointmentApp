@@ -1,40 +1,29 @@
 package com.example.ericpalma.calendarapp;
 
 import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
 
 @Entity
 public class Accounts {
     /*Properties*/
     @PrimaryKey
+    @NonNull
     private String username;
-    @ColumnInfo
+
     private String password;
-    @ColumnInfo
     private String calendarType;
-    @ColumnInfo
     private String calendarColor;
-    @ColumnInfo
     private String userFirstName;
-    @ColumnInfo
     private String userLastName;
 
     /*Setters*/
-    public Accounts(String usrFirst, String usrLast, String usrName, String pass){
-        this.userFirstName = usrFirst;
-        this.userLastName = usrLast;
-        this.username = usrName;
-        this.password = pass;
-        this.calendarType = "Month";
-        this.calendarColor = "silver";
-    }
-
-    public Accounts(String usrFirst, String usrLast, String usrName, String pass, String calType, String calColor){
-        this.userFirstName = usrFirst;
-        this.userLastName = usrLast;
-        this.username = usrName;
-        this.password = pass;
-        this.calendarType = calType;
-        this.calendarColor = calColor;
+    public Accounts(String userFirstName, String userLastName, String username, String password, String calendarType, String calendarColor){
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.username = username;
+        this.password = password;
+        this.calendarType = calendarType;
+        this.calendarColor = calendarColor;
     }
 
     public void setCalendarType(String type){

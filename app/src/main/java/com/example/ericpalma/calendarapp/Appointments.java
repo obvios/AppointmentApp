@@ -1,5 +1,7 @@
 package com.example.ericpalma.calendarapp;
 import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
+
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity(primaryKeys = {"apptUserName","year","month","day","time"},
@@ -9,19 +11,24 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                                     onDelete = CASCADE))
 public class Appointments {
     /*Columns*/
+    @NonNull
     private String year;
+    @NonNull
     private String month;
+    @NonNull
     private String day;
+    @NonNull
     private String time;
+    @NonNull
     private String apptUserName;
 
     /*Setters*/
-    public Appointments(String apptYr, String apptMon, String apptDay, String apptTime, String theUsername){
-        this.year = apptYr;
-        this.month = apptMon;
-        this.day = apptDay;
-        this.time = apptTime;
-        this.apptUserName = theUsername;
+    public Appointments(String year, String month, String day, String time, String apptUserName){
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.time = time;
+        this.apptUserName = apptUserName;
     }
 
     public void setApptYear(String yr){
@@ -45,19 +52,19 @@ public class Appointments {
         return this.apptUserName;
     }
 
-    public String getApptYear() {
+    public String getYear() {
         return this.year;
     }
 
-    public String getApptMonth() {
+    public String getMonth() {
         return this.month;
     }
 
-    public String getApptDay() {
+    public String getDay() {
         return this.day;
     }
 
-    public String getApptTime() {
+    public String getTime() {
         return this.time;
     }
 }
