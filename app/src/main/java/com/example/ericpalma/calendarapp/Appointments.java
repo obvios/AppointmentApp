@@ -1,10 +1,12 @@
 package com.example.ericpalma.calendarapp;
 import android.arch.persistence.room.*;
+import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity(primaryKeys = {"apptUserName","year","month","day","time"},
         foreignKeys = @ForeignKey(entity = Accounts.class,
                                     parentColumns = "username",
-                                    childColumns = "apptUserName"))
+                                    childColumns = "apptUserName",
+                                    onDelete = CASCADE))
 public class Appointments {
     /*Columns*/
     private String year;
