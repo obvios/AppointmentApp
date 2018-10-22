@@ -11,6 +11,9 @@ public interface AccountsDao {
     @Insert
     void insertAll(Accounts ... userAccounts);
 
+    @Query("SELECT * FROM Accounts")
+    List<Accounts> getAllAccounts();
+
     @Query("SELECT * FROM Appointments WHERE apptUserName LIKE :usrName")
     List<Appointments> getAccountAppointments(String usrName);
 
