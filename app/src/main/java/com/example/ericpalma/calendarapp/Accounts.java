@@ -12,7 +12,7 @@ public class Accounts {
 
     private String password;
     private String calendarType;
-    private String calendarColor;
+    private String calendarColor;   // comment
     private String userFirstName;
     private String userLastName;
 
