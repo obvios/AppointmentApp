@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">CalendarApp</string>
     <string name="action_settings">ActionSettings</string>
+    <string name="title_activity_menu_bar">Scheduling System</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Scheduling System</string>
+    <string name="nav_header_subtitle"> </string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

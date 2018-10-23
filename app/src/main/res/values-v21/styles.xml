@@ -1,6 +1,4 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,13 +6,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="TextAppearance.AppCombat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
         <item name="android:textColor">#000000</item>
+        <item name="android:color">#000000</item>
     </style>
-
-
 </resources>
