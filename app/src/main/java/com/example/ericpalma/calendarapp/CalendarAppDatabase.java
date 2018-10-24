@@ -4,6 +4,8 @@ import android.content.Context;
 
 @Database(entities = {Accounts.class, Appointments.class}, version = 1)
 public abstract class CalendarAppDatabase extends RoomDatabase {
+    public abstract AccountsDao accountsDao();
+    public abstract AppointmentsDao appointmentsDao();
     private static volatile CalendarAppDatabase INSTANCE;
 
     static CalendarAppDatabase getINSTANCE(final Context context){
