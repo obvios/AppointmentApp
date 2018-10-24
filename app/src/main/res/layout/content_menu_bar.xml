@@ -8,5 +8,4 @@
     tools:context=".MenuBar"
     tools:showIn="@layout/app_bar_menu_bar">
 
-
 </android.support.constraint.ConstraintLayout>

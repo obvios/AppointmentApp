@@ -104,16 +104,23 @@ public class MenuBar extends AppCompatActivity
         Class fragmentClass = null;
 
         if (id == R.id.create_account_menuButton) {
-            /*CreateAccountFragment createAccountFragment = new CreateAccountFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.create_account_menuButton, createAccountFragment).commit();*/
-
             fragmentClass = CreateAccountFragment.class;
         }
+        else if (id == R.id.set_calendar_menuButton) {
+            fragmentClass = SetCalendarFragment.class;
+        }
+        else if (id == R.id.change_username_menuButton) {
+            fragmentClass = ChangeUsernameFragment.class;
+        }
+        else if (id == R.id.change_password_menuButton) {
+            fragmentClass = ChangePasswordFragment.class;
+        }
+        else if (id == R.id.modify_account_menuButton) {
 
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;*/
+        }
+        else {
+            fragmentClass = CalendarFragment.class;
+        }
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();

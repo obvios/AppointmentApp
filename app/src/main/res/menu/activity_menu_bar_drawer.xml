@@ -5,32 +5,26 @@
 
     <group android:checkableBehavior="single">
 
-
-
     <item android:title="Account">
         <menu>
             <item android:title="Create Account" android:id="@+id/create_account_menuButton"/>
-            <item android:title="Change User Name"/>
-            <item android:title="Change Password"/>
-            <item android:title="Modify Account"/>
+            <item android:title="Change User Name" android:id="@+id/change_username_menuButton"/>
+            <item android:title="Change Password" android:id="@+id/change_password_menuButton"/>
+            <item android:title="Modify Account" android:id="@+id/modify_account_menuButton"/>
         </menu>
     </item>
 
     <item android:title="Appointment">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Make Appointment" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Cancel Appointment" />
+            <item android:title="Make Appointment" />
+            <item android:title="Cancel Appointment" />
             <item android:title="Change Appointment"/>
         </menu>
     </item>
 
     <item android:title="Setting">
         <menu>
-            <item android:title="Set Calendar Type"/>
+            <item android:title="Set Calendar Type" android:id="@+id/set_calendar_menuButton"/>
         </menu>
     </item>
 
@@ -41,5 +35,4 @@
     </item>
 
     </group>
-
 </menu>
