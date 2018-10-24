@@ -20,7 +20,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_menu_bar" />
+    <!--<include
+        android:id="@+id/include"
+        layout="@layout/content_menu_bar" />-->
+
+    <FrameLayout
+        android:id="@+id/flContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
