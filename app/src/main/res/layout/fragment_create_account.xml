@@ -19,16 +19,19 @@
         android:hint="First Name"
         android:textSize="24sp" />
     <EditText
+        android:id="@+id/createAccountLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Last Name"
         android:textSize="24sp" />
     <EditText
+        android:id="@+id/createAccountUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
         android:textSize="24sp" />
     <EditText
+        android:id="@+id/createAccounPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"

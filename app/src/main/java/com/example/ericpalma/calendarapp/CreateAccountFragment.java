@@ -14,11 +14,13 @@ import android.widget.EditText;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateAccountFragment extends Fragment {
-
+public class CreateAccountFragment extends Fragment implements View.OnClickListener {
     /*needed to handle input*/
     private Button createButton;
-    private EditText mEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
 
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -31,15 +33,20 @@ public class CreateAccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_account, container, false);
         createButton = view.findViewById(R.id.createAccountButton);
-        mEditText = view.findViewById(R.id.createAccountFirstName);
-        createButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //process input
-                Log.d(android.content.ContentValues.TAG, mEditText.getText().toString());
-            }
-        });
+        firstNameEditText = view.findViewById(R.id.createAccountFirstName);
+        lastNameEditText = view.findViewById(R.id.createAccountLastName);
+        usernameEditText = view.findViewById(R.id.createAccountUsername);
+        passwordEditText = view.findViewById(R.id.createAccounPassword);
+        createButton.setOnClickListener(this);
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        Log.d(android.content.ContentValues.TAG, firstNameEditText.getText().toString());
+        Log.d(android.content.ContentValues.TAG, lastNameEditText.getText().toString());
+        Log.d(android.content.ContentValues.TAG, usernameEditText.getText().toString());
+        Log.d(android.content.ContentValues.TAG, passwordEditText.getText().toString());
+
+    }
 }
