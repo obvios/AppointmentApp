@@ -5,13 +5,13 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class LocalDataSource {
+public class DataRepository {
     private AccountsDao accountsDao;
     private AppointmentsDao appointmentsDao;
     private List<Accounts> allAccounts;
     private List<Appointments> allAppointments;
 
-    LocalDataSource(Application application){
+    DataRepository(Application application){
         CalendarAppDatabase db = CalendarAppDatabase.getINSTANCE(application);
         accountsDao = db.accountsDao();
         appointmentsDao = db.appointmentsDao();
