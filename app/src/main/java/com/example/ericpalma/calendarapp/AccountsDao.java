@@ -1,5 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface AccountsDao {
     void insertAllAccounts(Accounts ... userAccounts);
 
     @Query("SELECT * FROM Accounts")
-    List<Accounts> getAllAccounts();
+    LiveData<List<Accounts>> getAllAccounts();
 
     @Query("SELECT * FROM Appointments WHERE apptUserName LIKE :usrName")
     List<Appointments> getAccountAppointments(String usrName);

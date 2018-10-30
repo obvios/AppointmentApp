@@ -1,6 +1,7 @@
 package com.example.ericpalma.calendarapp;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class DataRepository {
     private AccountsDao accountsDao;
     private AppointmentsDao appointmentsDao;
-    private List<Accounts> allAccounts;
+    private LiveData<List<Accounts>> allAccounts;
     private List<Appointments> allAppointments;
 
     DataRepository(Application application){
@@ -18,7 +19,7 @@ public class DataRepository {
         allAccounts = accountsDao.getAllAccounts();
     }
 
-    public List<Accounts> getAllAccounts(){
+    public LiveData<List<Accounts>> getAllAccounts(){
         return allAccounts;
     }
 
