@@ -1,5 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.support.v4.app.Fragment;
 
 public class MenuBar extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private AppViewModel appViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class MenuBar extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //set the view model
+        appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
     }
 
     @Override

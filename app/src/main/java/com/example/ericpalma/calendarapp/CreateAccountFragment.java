@@ -1,6 +1,7 @@
 package com.example.ericpalma.calendarapp;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,12 +16,13 @@ import android.widget.EditText;
  * A simple {@link Fragment} subclass.
  */
 public class CreateAccountFragment extends Fragment implements View.OnClickListener {
+    private AppViewModel appViewModel;
     /*needed to handle input*/
     private Button createButton;
-    private EditText firstNameEditText;
-    private EditText lastNameEditText;
-    private EditText usernameEditText;
-    private EditText passwordEditText;
+    EditText firstNameText;
+    EditText lastNameText;
+    EditText usernameText;
+    EditText passwordText;
 
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -29,23 +31,22 @@ public class CreateAccountFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        appViewModel = ViewModelProviders.of(getActivity()).get(AppViewModel.class);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_account, container, false);
         createButton = view.findViewById(R.id.createAccountButton);
-        firstNameEditText = view.findViewById(R.id.createAccountFirstName);
-        lastNameEditText = view.findViewById(R.id.createAccountLastName);
-        usernameEditText = view.findViewById(R.id.createAccountUsername);
-        passwordEditText = view.findViewById(R.id.createAccounPassword);
         createButton.setOnClickListener(this);
+        firstNameText = view.findViewById(R.id.createAccountFirstName);
+        lastNameText = view.findViewById(R.id.createAccountLastName);
+        usernameText = view.findViewById(R.id.createAccountUsername);
+        passwordText = view.findViewById(R.id.createAccounPassword);
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        Log.d(android.content.ContentValues.TAG, firstNameEditText.getText().toString());
-        Log.d(android.content.ContentValues.TAG, lastNameEditText.getText().toString());
-        Log.d(android.content.ContentValues.TAG, usernameEditText.getText().toString());
-        Log.d(android.content.ContentValues.TAG, passwordEditText.getText().toString());
-
+        Accounts newAccount = new Accounts(firstNameText.getText().toString(), lastNameText.getText().toString(), usernameText.getText().toString(), passwordText.getText().toString(),
+                "Month", "Default");
+        appViewModel.insert(newAccount);
     }
 }
