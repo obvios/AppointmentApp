@@ -27,6 +27,10 @@ public class DataRepository {
         new insertAccountTask(accountsDao).execute(account);
     }
 
+    public void changeUsername(String oldUsername, String newUsername, String password){
+        new changeUsernameTask(oldUsername, newUsername, password, accountsDao).execute();
+    }
+
     public void getAccountAppointments(Accounts account){
         new getAccountAppointmentsTask(accountsDao).execute(account);
     }
@@ -71,6 +75,27 @@ public class DataRepository {
             asyncAccountsDao.insertUserAccount(account[0]);
             return null;
 
+        }
+    }
+
+    /*Change username in background*/
+    private static class changeUsernameTask extends AsyncTask<String,Void,Void>{
+        private AccountsDao asyncAccountsDao;
+        private String oldUsername;
+        private String newUsername;
+        private String password;
+
+        changeUsernameTask(String oldUsername, String newUsername, String password ,AccountsDao dao){
+            asyncAccountsDao = dao;
+            this.oldUsername = oldUsername;
+            this.newUsername = newUsername;
+            this.password = password;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            asyncAccountsDao.changeUsername(oldUsername,newUsername,password);
+            return null;
         }
     }
 

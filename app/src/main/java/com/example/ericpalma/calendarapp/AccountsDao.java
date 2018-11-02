@@ -18,8 +18,8 @@ public interface AccountsDao {
     @Query("SELECT * FROM Appointments WHERE apptUserName LIKE :usrName")
     List<Appointments> getAccountAppointments(String usrName);
 
-    @Query("UPDATE Accounts SET username = :newUsrName WHERE username = :usrName")
-    void changeUsername(String usrName, String newUsrName);
+    @Query("UPDATE Accounts SET username = :newUsrName WHERE username = :usrName AND password = :password")
+    void changeUsername(String usrName, String newUsrName, String password);
 
     @Query("UPDATE Accounts SET password = :newPassword WHERE username = :usrName")
     void changePassword(String usrName, String newPassword);

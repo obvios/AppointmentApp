@@ -24,4 +24,8 @@ public class AppViewModel extends AndroidViewModel {
     public void insert(Accounts account){
         dataRepository.insertAccount(account);
     }
+
+    public void changeUsername(String oldUsername, String newUsername, String password){
+        dataRepository.changeUsername(oldUsername,newUsername, password);
+    }
 }
