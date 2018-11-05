@@ -1,5 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,16 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 
 public class SetCalendarFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private AppViewModel appViewModel;
 
     public SetCalendarFragment() {
         // Required empty public constructor
@@ -25,8 +20,27 @@ public class SetCalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_set_calendar, container, false);
+
+        return view;
+    }
+
+    public void onRadioButtonClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()){
+            case R.id.radio_Day:
+                if(checked){}
+                break;
+            case R.id.radio_Week:
+                if(checked){}
+                break;
+            case R.id.radio_Month:
+                if(checked){}
+                break;
+        }
     }
 
 }
