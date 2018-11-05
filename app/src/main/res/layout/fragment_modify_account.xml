@@ -3,17 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyAccountFragment">
+    tools:context=".ModifyAccountFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Modify user account data"
         android:textSize="24sp"/>
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Change First Name"/>
+    <EditText
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:hint="Change Last Name"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"/>
 
 </LinearLayout>

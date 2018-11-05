@@ -120,7 +120,7 @@ public class MenuBar extends AppCompatActivity
             fragmentClass = ChangePasswordFragment.class;
         }
         else if (id == R.id.modify_account_menuButton) {
-
+            fragmentClass = ModifyAccountFragment.class;
         }
         else {
             fragmentClass = CalendarFragment.class;
