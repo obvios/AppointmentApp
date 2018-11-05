@@ -1,8 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-public class SetCalendarFragment extends Fragment implements View.OnClickListener {
+public class SetCalendarFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private AppViewModel appViewModel;
+    private RadioGroup radioGroup;
     private Button setCalendarViewButton;
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -29,6 +28,8 @@ public class SetCalendarFragment extends Fragment implements View.OnClickListene
         appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_set_calendar, container, false);
+        radioGroup = (RadioGroup) view.findViewById(R.id.set_calendarView_RadioButtonGroup);
+        radioGroup.setOnCheckedChangeListener(this);
         setCalendarViewButton = view.findViewById(R.id.set_calendarView_SetButton);
         setCalendarViewButton.setOnClickListener(this);
         usernameEditText = view.findViewById(R.id.set_calendarView_Username);
@@ -37,18 +38,17 @@ public class SetCalendarFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
-    public void onRadioButtonClicked(View view){
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()){
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
             case R.id.radio_Day:
-                if(checked){newCalendarViewType = "Day";}
+                newCalendarViewType = "Day";
                 break;
             case R.id.radio_Week:
-                if(checked){newCalendarViewType = "Week";}
+                newCalendarViewType = "Week";
                 break;
             case R.id.radio_Month:
-                if(checked){newCalendarViewType = "Month";}
+                newCalendarViewType = "Month";
                 break;
         }
     }

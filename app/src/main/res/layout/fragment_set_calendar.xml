@@ -23,26 +23,24 @@
         android:layout_height="wrap_content"
         android:hint="Password"/>
     <RadioGroup
+        android:id="@+id/set_calendarView_RadioButtonGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/radio_Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Day"
-            android:onClick="onRadioButtonClicked"/>
+            android:text="Day" />
         <RadioButton
             android:id="@+id/radio_Week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Week"
-            android:onClick="onRadioButtonClicked"/>
+            android:text="Week" />
         <RadioButton
             android:id="@+id/radio_Month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Month"
-            android:onClick="onRadioButtonClicked"/>
+            android:text="Month" />
     </RadioGroup>
     <Button
         android:id="@+id/set_calendarView_SetButton"
