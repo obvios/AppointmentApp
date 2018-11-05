@@ -21,8 +21,8 @@ public interface AccountsDao {
     @Query("UPDATE Accounts SET username = :newUsrName WHERE username = :usrName AND password = :password")
     void changeUsername(String usrName, String newUsrName, String password);
 
-    @Query("UPDATE Accounts SET password = :newPassword WHERE username = :usrName")
-    void changePassword(String usrName, String newPassword);
+    @Query("UPDATE Accounts SET password = :newPassword WHERE username = :usrName AND password = :currentPassword")
+    void changePassword(String usrName,String currentPassword, String newPassword);
 
     @Query("UPDATE Accounts SET calendarColor = :newColor WHERE username = :usrName")
     void changeCalColorPreference(String usrName ,String newColor);

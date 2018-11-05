@@ -28,4 +28,8 @@ public class AppViewModel extends AndroidViewModel {
     public void changeUsername(String oldUsername, String newUsername, String password){
         dataRepository.changeUsername(oldUsername,newUsername, password);
     }
+
+    public void changePassword(String username, String currentPassword, String newPassword){
+        dataRepository.changePassword(username,currentPassword,newPassword);
+    }
 }
