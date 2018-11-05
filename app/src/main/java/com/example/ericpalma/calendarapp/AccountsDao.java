@@ -27,8 +27,8 @@ public interface AccountsDao {
     @Query("UPDATE Accounts SET calendarColor = :newColor WHERE username = :usrName")
     void changeCalColorPreference(String usrName ,String newColor);
 
-    @Query("UPDATE Accounts SET calendarType = :newType WHERE username = :usrName")
-    void changeCalTypePreference(String usrName , String newType);
+    @Query("UPDATE Accounts SET calendarType = :newType WHERE username = :usrName AND password = :password")
+    void changeCalTypePreference(String usrName,String password , String newType);
 
     @Delete
     void deleteAccount(Accounts userAccount1);

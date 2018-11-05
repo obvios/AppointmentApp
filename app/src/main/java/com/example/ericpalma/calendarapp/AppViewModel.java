@@ -32,4 +32,8 @@ public class AppViewModel extends AndroidViewModel {
     public void changePassword(String username, String currentPassword, String newPassword){
         dataRepository.changePassword(username,currentPassword,newPassword);
     }
+
+    public void changeCalendarViewType(String user, String password, String newType){
+        dataRepository.changeCalendarTypePreference(user,password,newType);
+    }
 }

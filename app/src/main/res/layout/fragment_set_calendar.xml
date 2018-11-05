@@ -12,6 +12,16 @@
         android:layout_height="wrap_content"
         android:text="Set calendar type"
         android:textSize="24sp"/>
+    <EditText
+        android:id="@+id/set_calendarView_Username"
+        android:layout_width="240sp"
+        android:layout_height="wrap_content"
+        android:hint="Username"/>
+    <EditText
+        android:id="@+id/set_calendarView_Password"
+        android:layout_width="240sp"
+        android:layout_height="wrap_content"
+        android:hint="Password"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -34,5 +44,10 @@
             android:text="Month"
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
+    <Button
+        android:id="@+id/set_calendarView_SetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"/>
 
 </LinearLayout>
