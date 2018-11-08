@@ -39,6 +39,10 @@ public class DataRepository {
         new changeCalendarTypePreferenceTask(username,password,newViewType,accountsDao).execute();
     }
 
+    public void modifyAccountData(String username, String password, String newFirst, String newLast){
+        new modifyAccountDataTask(username,password,newFirst,newLast,accountsDao).execute();
+    }
+
     public void getAccountAppointments(Accounts account){
         new getAccountAppointmentsTask(accountsDao).execute(account);
     }
@@ -145,6 +149,28 @@ public class DataRepository {
         @Override
         protected Void doInBackground(String... strings) {
             asyncAccountsDao.changeCalTypePreference(username,password,type);
+            return null;
+        }
+    }
+
+    private static class modifyAccountDataTask extends AsyncTask<String,Void,Void>{
+        private AccountsDao asyncAccountsDao;
+        private String username;
+        private String password;
+        private String newFirstName;
+        private String newLastName;
+
+        modifyAccountDataTask(String username, String password, String newFirstName, String newLastName, AccountsDao dao){
+            this.asyncAccountsDao = dao;
+            this.username = username;
+            this.password = password;
+            this.newFirstName = newFirstName;
+            this.newLastName = newLastName;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            asyncAccountsDao.modifyAccountData(username,password,newFirstName,newLastName);
             return null;
         }
     }

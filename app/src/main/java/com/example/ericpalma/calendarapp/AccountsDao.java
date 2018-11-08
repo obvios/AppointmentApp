@@ -30,6 +30,9 @@ public interface AccountsDao {
     @Query("UPDATE Accounts SET calendarType = :newType WHERE username = :usrName AND password = :password")
     void changeCalTypePreference(String usrName,String password , String newType);
 
+    @Query("UPDATE Accounts SET userFirstName = :newFirst, userLastName = :newLast WHERE username = :usrName AND password = :password")
+    void modifyAccountData(String usrName, String password, String newFirst, String newLast);
+
     @Delete
     void deleteAccount(Accounts userAccount1);
 
