@@ -20,6 +20,14 @@
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Change Last Name"/>
+    <EditText
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:hint="Username"/>
+    <EditText
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:hint="Password"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
