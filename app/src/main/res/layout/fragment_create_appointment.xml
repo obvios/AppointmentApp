@@ -12,6 +12,7 @@
         android:text="Create Appointment"
         android:textSize="24sp"/>
     <EditText
+        android:id="@+id/create_appointment_fragment_Date"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Year-Month-Day"/>
@@ -20,17 +21,21 @@
         android:layout_height="wrap_content"
         android:text="Time"/>
     <Spinner
+        android:id="@+id/create_appointment_fragment_Spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></Spinner>
     <EditText
+        android:id="@+id/create_appointment_fragment_Username"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Username"/>
     <EditText
+        android:id="@+id/create_appointment_fragment_Password"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Password"/>
     <Button
+        android:id="@+id/create_appointment_fragment_CreateAppointmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Appointment"/>
