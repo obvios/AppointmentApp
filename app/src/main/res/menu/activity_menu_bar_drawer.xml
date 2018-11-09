@@ -16,9 +16,9 @@
 
     <item android:title="Appointment">
         <menu>
-            <item android:title="Make Appointment" />
-            <item android:title="Cancel Appointment" />
-            <item android:title="Change Appointment"/>
+            <item android:title="Make Appointment" android:id="@+id/create_appointment_menuButton" />
+            <item android:title="Cancel Appointment" android:id="@+id/cancel_appointment_menuButton"/>
+            <item android:title="Change Appointment" android:id="@+id/change_appointment_menuButton"/>
         </menu>
     </item>
 

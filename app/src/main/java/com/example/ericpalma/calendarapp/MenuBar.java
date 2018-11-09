@@ -122,6 +122,9 @@ public class MenuBar extends AppCompatActivity
         else if (id == R.id.modify_account_menuButton) {
             fragmentClass = ModifyAccountFragment.class;
         }
+        else if (id == R.id.create_appointment_menuButton) {
+            fragmentClass = CreateAppointmentFragment.class;
+        }
         else {
             fragmentClass = CalendarFragment.class;
         }
