@@ -1,5 +1,6 @@
 package com.example.ericpalma.calendarapp;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
 import java.util.List;
 
@@ -10,6 +11,9 @@ public interface AppointmentsDao {
 
     @Insert
     void insertAllAppointments(Appointments ... appointments);
+
+    @Query("SELECT * FROM Appointments")
+    List<Appointments> getAllAppointments();
 
     @Delete
     void deleteAppointment(Appointments appointment);

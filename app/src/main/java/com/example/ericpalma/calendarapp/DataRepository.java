@@ -3,20 +3,24 @@ package com.example.ericpalma.calendarapp;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
-
+import android.util.Log;
+import static android.content.ContentValues.TAG;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataRepository {
     private AccountsDao accountsDao;
     private AppointmentsDao appointmentsDao;
     private LiveData<List<Accounts>> allAccounts;
-    private List<Appointments> allAppointments;
+    private HashMap<String,Appointments> allAppointmentsMap;
 
     DataRepository(Application application){
         CalendarAppDatabase db = CalendarAppDatabase.getINSTANCE(application);
         accountsDao = db.accountsDao();
         appointmentsDao = db.appointmentsDao();
         allAccounts = accountsDao.getAllAccounts();
+        allAppointmentsMap = new HashMap<>();
+        new mapAllAppointmentsTask(appointmentsDao).execute(allAppointmentsMap);
     }
 
     public LiveData<List<Accounts>> getAllAccounts(){
@@ -43,18 +47,27 @@ public class DataRepository {
         new modifyAccountDataTask(username,password,newFirst,newLast,accountsDao).execute();
     }
 
+    public Boolean checkAvailabitity(String date){
+        return !allAppointmentsMap.containsKey(date);
+    }
+
     public void getAccountAppointments(Accounts account){
         new getAccountAppointmentsTask(accountsDao).execute(account);
     }
 
     public void insertAppointment(Appointments appointment){
         new insertAppointmentTask(appointmentsDao).execute(appointment);
+        updateAppointmentsMap(appointment);
     }
 
     public void deleteAccount(Accounts account){
         new deleteAccountTask(accountsDao).execute(account);
     }
 
+    private void updateAppointmentsMap(Appointments appointment){
+        String date_timeKey = appointment.getDate() + " " + appointment.getTime();
+        allAppointmentsMap.put(date_timeKey,appointment);
+    }
     public void deleteAppointment(Appointments appointment){
         new deleteAppointmentTask(appointmentsDao).execute(appointment);
     }
@@ -220,4 +233,25 @@ public class DataRepository {
             return null;
         }
     }
+
+    private static class mapAllAppointmentsTask extends AsyncTask<HashMap<String,Appointments>,Void,Void>{
+        /*Map all appoinments based on date and time only*/
+        private AppointmentsDao appointmentsDao;
+
+        mapAllAppointmentsTask(AppointmentsDao dao){
+            this.appointmentsDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(HashMap<String,Appointments>... maps) {
+            List<Appointments> allAppointments = appointmentsDao.getAllAppointments();
+            for( Appointments appointment : allAppointments){
+                String Date_And_Time = appointment.getDate() + " " + appointment.getTime();
+                maps[0].put(Date_And_Time,appointment);
+            }
+            return null;
+        }
+    }
+
+
 }

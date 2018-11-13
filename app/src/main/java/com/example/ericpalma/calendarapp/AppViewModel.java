@@ -40,4 +40,12 @@ public class AppViewModel extends AndroidViewModel {
     public void modifyAccountData(String user, String password, String newFirst, String newLast){
         dataRepository.modifyAccountData(user,password,newFirst,newLast);
     }
+
+    public Boolean checkAvailability(String date){
+        return dataRepository.checkAvailabitity(date);
+    }
+
+    public void insertAppointment(Appointments appointment){
+        dataRepository.insertAppointment(appointment);
+    }
 }
