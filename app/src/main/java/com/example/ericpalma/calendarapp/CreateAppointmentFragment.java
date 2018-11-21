@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,9 +55,22 @@ public class CreateAppointmentFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         String date = dateEditText.getText().toString();
         String date_Time = date + " " + appointmentTime;
+
+        Context context = this.getContext();
+        int duration = Toast.LENGTH_SHORT;
+        CharSequence toastText = "";
+        Toast toast;
         if(appViewModel.checkAvailability(date_Time)){
             Appointments newAppointment = new Appointments(date,appointmentTime, usernameEditText.getText().toString());
             appViewModel.insertAppointment(newAppointment);
+            toastText = "Appointment Booked";
+            toast = Toast.makeText(context,toastText,duration);
+            toast.show();
+        }else{
+            toastText = "Already Booked!";
+            toast = Toast.makeText(context,toastText,duration);
+            toast.show();
+
         }
     }
 
