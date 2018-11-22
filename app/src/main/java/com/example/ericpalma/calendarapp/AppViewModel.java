@@ -48,4 +48,8 @@ public class AppViewModel extends AndroidViewModel {
     public void insertAppointment(Appointments appointment){
         dataRepository.insertAppointment(appointment);
     }
+
+    public void getAccountAppointments(String username,AsyncResponse listener){
+        dataRepository.getAccountAppointments(username,listener);
+    }
 }

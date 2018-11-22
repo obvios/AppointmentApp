@@ -51,8 +51,8 @@ public class DataRepository {
         return !allAppointmentsMap.containsKey(date);
     }
 
-    public void getAccountAppointments(Accounts account){
-        new getAccountAppointmentsTask(accountsDao).execute(account);
+    public void getAccountAppointments(String username,AsyncResponse listener){
+        new getAccountAppointmentsTask(accountsDao,listener).execute(username);
     }
 
     public void insertAppointment(Appointments appointment){
@@ -73,16 +73,23 @@ public class DataRepository {
     }
 
     /*get appointments in background*/
-    private static class getAccountAppointmentsTask extends AsyncTask<Accounts, Void, List<Appointments>> {
+    private static class getAccountAppointmentsTask extends AsyncTask<String, Void, List<Appointments>> {
         private AccountsDao asyncAccountsDao;
+        private AsyncResponse delegate;
 
-        getAccountAppointmentsTask(AccountsDao dao){
+        getAccountAppointmentsTask(AccountsDao dao,AsyncResponse delegate){
             asyncAccountsDao = dao;
+            this.delegate = delegate;
         }
 
         @Override
-        protected List<Appointments> doInBackground(Accounts... account) {
-            return asyncAccountsDao.getAccountAppointments(account[0].getUsername());
+        protected List<Appointments> doInBackground(String... strings) {
+            return asyncAccountsDao.getAccountAppointments(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Appointments> appointments) {
+            delegate.onAccountAppointmentsRetrieved(appointments);
         }
     }
 
