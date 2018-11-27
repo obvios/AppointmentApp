@@ -2,17 +2,27 @@ package com.example.ericpalma.calendarapp;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 import static android.content.ContentValues.TAG;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
-public class DataRepository {
+public class DataRepository implements AsyncResponse{
     private AccountsDao accountsDao;
     private AppointmentsDao appointmentsDao;
     private LiveData<List<Accounts>> allAccounts;
     private HashMap<String,Appointments> allAppointmentsMap;
+    private Context fileContext;
 
     DataRepository(Application application){
         CalendarAppDatabase db = CalendarAppDatabase.getINSTANCE(application);
@@ -21,6 +31,7 @@ public class DataRepository {
         allAccounts = accountsDao.getAllAccounts();
         allAppointmentsMap = new HashMap<>();
         new mapAllAppointmentsTask(appointmentsDao).execute(allAppointmentsMap);
+        fileContext = null;
     }
 
     public LiveData<List<Accounts>> getAllAccounts(){
@@ -70,6 +81,12 @@ public class DataRepository {
     }
     public void deleteAppointment(Appointments appointment){
         new deleteAppointmentTask(appointmentsDao).execute(appointment);
+    }
+
+    public void downloadAppointments(Context context){
+        Log.d(TAG,"init enter to repo");
+        this.fileContext = context;
+        new getAccountAppointmentsTask(accountsDao,this).execute("u1");
     }
 
     /*get appointments in background*/
@@ -259,6 +276,28 @@ public class DataRepository {
             return null;
         }
     }
+    @Override
+    public void onAccountAppointmentsRetrieved(List<Appointments> appointmentsList) {
+        Log.d(TAG,"trying to write to file");
 
+        try {
+            File root = Environment.getExternalStorageDirectory();
+            File dir = new File (root.getAbsolutePath() + "/download");
+            File file = new File(dir,  appointmentsList.get(0).getApptUserName() +".txt");
+
+            FileOutputStream f = new FileOutputStream(file);
+            PrintWriter pw = new PrintWriter(f);
+            for(Appointments appt: appointmentsList){
+                pw.println(appt.getDate() + " " + appt.getTime());
+            }
+            pw.flush();
+            pw.close();
+            f.close();
+
+        }catch (IOException e){
+            Log.d(TAG,"failed");
+        }
+        return;
+    }
 
 }
