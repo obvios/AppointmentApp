@@ -1,10 +1,16 @@
 package com.example.ericpalma.calendarapp;
 
 import android.app.Application;
+import android.app.TaskStackBuilder;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
+import android.nfc.Tag;
+import android.util.Log;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class AppViewModel extends AndroidViewModel {
     private DataRepository dataRepository;
@@ -57,7 +63,12 @@ public class AppViewModel extends AndroidViewModel {
         dataRepository.deleteAppointment(appointmentDateTime);
     }
 
-    public void changeAppointment(String appointmentDateTime, String newDate, String newTime){
-        dataRepository.changeAppointment(appointmentDateTime,newDate,newTime);
+    public void changeAppointment(String appointmentDateTime, String newDate, String newTime) {
+        dataRepository.changeAppointment(appointmentDateTime, newDate, newTime);
+    }
+
+    public void exportAppointments(Context context){
+        Log.d(TAG ,"in view model");
+        dataRepository.downloadAppointments(context);
     }
 }
