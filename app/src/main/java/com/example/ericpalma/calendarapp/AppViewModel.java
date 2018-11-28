@@ -67,8 +67,8 @@ public class AppViewModel extends AndroidViewModel {
         dataRepository.changeAppointment(appointmentDateTime, newDate, newTime);
     }
 
-    public void exportAppointments(Context context){
+    public void exportAppointments(String username){
         Log.d(TAG ,"in view model");
-        dataRepository.downloadAppointments(context);
+        dataRepository.downloadAppointments(username);
     }
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import static android.content.ContentValues.TAG;
 
@@ -21,6 +30,8 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
     private AppViewModel appViewModel;
     private Button importButton;
     private Button exportButton;
+    private EditText fileNameEditText;
+    private EditText usernameEditText;
 
     public ImportExportFragment() {
         // Required empty public constructor
@@ -32,6 +43,8 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         appViewModel = ViewModelProviders.of(getActivity()).get(AppViewModel.class);
         View view = inflater.inflate(R.layout.fragment_import_export,container,false);
+        fileNameEditText = view.findViewById(R.id.import_export_FileNameEditText);
+        usernameEditText = view.findViewById(R.id.import_export_UsernameEditText);
         importButton = view.findViewById(R.id.import_export_importButton);
         importButton.setOnClickListener(this);
         exportButton = view.findViewById(R.id.import_export_exportButton);
@@ -42,9 +55,30 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.import_export_importButton:
+                try {
+                    File root = Environment.getExternalStorageDirectory();
+                    File dir = new File (root.getAbsolutePath() + "/download");
+                    File file = new File(root,  fileNameEditText.getText().toString());
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    Log.d(TAG,"created buffered reader");
+                    String line;
+                    //Read text from file
+                    StringBuilder text = new StringBuilder();
+                    while ((line = br.readLine()) != null) {
+                        text.append(line);
+                        text.append('\n');
+                        Log.d(TAG, text.toString());
+                    }
+                    br.close();
+
+                }catch (IOException e){
+                    Log.d(TAG,"failed");
+                }
+                break;
             case R.id.import_export_exportButton:
                 Log.d(TAG,"clicked button");
-                appViewModel.exportAppointments(getContext());
+                appViewModel.exportAppointments(usernameEditText.getText().toString());
                 break;
             default:
                 break;

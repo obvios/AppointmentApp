@@ -12,11 +12,20 @@
         android:layout_height="wrap_content"
         android:text="Import or Export a Schedule File"
         android:textSize="24sp"/>
+    <EditText
+        android:id="@+id/import_export_FileNameEditText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="File Name (*.txt)"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Import Schedule from File"
         android:id="@+id/import_export_importButton"/>
+    <EditText
+        android:id="@+id/import_export_UsernameEditText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

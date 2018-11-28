@@ -94,10 +94,9 @@ public class DataRepository implements AsyncResponse{
         allAppointmentsMap.remove(appointmentDateTime);
     }
 
-    public void downloadAppointments(Context context){
+    public void downloadAppointments(String username){
         Log.d(TAG,"init enter to repo");
-        this.fileContext = context;
-        new getAccountAppointmentsTask(accountsDao,this).execute("u1");
+        new getAccountAppointmentsTask(accountsDao,this).execute(username);
     }
 
     /*get appointments in background*/
