@@ -59,16 +59,18 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
                 try {
                     File root = Environment.getExternalStorageDirectory();
                     File dir = new File (root.getAbsolutePath() + "/download");
-                    File file = new File(root,  fileNameEditText.getText().toString());
+                    File file = new File(dir,  fileNameEditText.getText().toString() + ".txt");
                     BufferedReader br = new BufferedReader(new FileReader(file));
                     Log.d(TAG,"created buffered reader");
                     String line;
                     //Read text from file
                     StringBuilder text = new StringBuilder();
                     while ((line = br.readLine()) != null) {
-                        text.append(line);
-                        text.append('\n');
-                        Log.d(TAG, text.toString());
+                        String[] words = line.split("\\s+");
+                        Log.d(TAG, words[0]);
+                        Log.d(TAG, words[1]);
+                        Appointments newAppointment = new Appointments(words[0],words[1],fileNameEditText.getText().toString());
+                        appViewModel.insertAppointment(newAppointment);
                     }
                     br.close();
 
