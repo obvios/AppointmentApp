@@ -12,15 +12,17 @@
         android:text="Change Appointment"
         android:textSize="24sp"/>
     <EditText
+        android:id="@+id/change_appointment_fragment_UsernameEditText"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Username"/>
     <EditText
-        android:id="@+id/create_appointment_fragment_Password"
+        android:id="@+id/change_appointment_fragment_PasswordEditText"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Password"/>
     <Button
+        android:id="@+id/change_appointment_fragment_GetAppointmentsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Appointments"/>
@@ -30,18 +32,25 @@
         android:text="Your Appointments"
         android:textSize="18sp"/>
     <Spinner
+        android:id="@+id/change_appointment_fragment_AppointmentsSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></Spinner>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Appointment Time:"
+        android:text="New Appointment:"
         android:textSize="18sp"/>
     <EditText
+        android:id="@+id/change_appointment_fragment_NewAppointmentDateEditText"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Year-Month-Day"/>
+    <Spinner
+        android:id="@+id/change_appointment_fragment_NewAppointmentTimeSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"></Spinner>
     <Button
+        android:id="@+id/change_appointment_fragment_ChangeAppointmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Appointment"/>

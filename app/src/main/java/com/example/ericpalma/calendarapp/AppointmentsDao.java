@@ -15,6 +15,10 @@ public interface AppointmentsDao {
     @Query("SELECT * FROM Appointments")
     List<Appointments> getAllAppointments();
 
+    @Query("UPDATE Appointments SET date = :newDate , time = :newTime " +
+            "WHERE date = :oldDate AND time = :oldTime")
+    void changeAppointmentDayTime(String oldDate, String oldTime ,String newDate, String newTime);
+
     @Delete
     void deleteAppointment(Appointments appointment);
 

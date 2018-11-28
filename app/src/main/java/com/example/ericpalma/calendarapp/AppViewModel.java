@@ -52,4 +52,12 @@ public class AppViewModel extends AndroidViewModel {
     public void getAccountAppointments(String username,AsyncResponse listener){
         dataRepository.getAccountAppointments(username,listener);
     }
+
+    public void deleteAppointment(String appointmentDateTime){
+        dataRepository.deleteAppointment(appointmentDateTime);
+    }
+
+    public void changeAppointment(String appointmentDateTime, String newDate, String newTime){
+        dataRepository.changeAppointment(appointmentDateTime,newDate,newTime);
+    }
 }

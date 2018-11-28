@@ -12,15 +12,17 @@
         android:text="Cancel Appointment"
         android:textSize="24sp"/>
     <EditText
+        android:id="@+id/cancel_appointment_fragment_Username"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Username"/>
     <EditText
-        android:id="@+id/create_appointment_fragment_Password"
+        android:id="@+id/cancel_appointment_fragment_Password"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:hint="Password"/>
     <Button
+        android:id="@+id/cancel_appointment_fragment_GetAppointmentsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Appointments"/>
@@ -30,9 +32,11 @@
         android:text="Your Appointments"
         android:textSize="18sp"/>
     <Spinner
+        android:id="@+id/cancel_appointment_fragment_AppointmentsSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></Spinner>
     <Button
+        android:id="@+id/cancel_appointment_fragment_CancelAppointmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel Appointment"/>

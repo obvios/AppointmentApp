@@ -68,8 +68,18 @@ public class DataRepository {
         String date_timeKey = appointment.getDate() + " " + appointment.getTime();
         allAppointmentsMap.put(date_timeKey,appointment);
     }
-    public void deleteAppointment(Appointments appointment){
+
+    public void deleteAppointment(String appointmentDateTime){
+        Appointments appointment = allAppointmentsMap.get(appointmentDateTime);
+        allAppointmentsMap.remove(appointmentDateTime);
         new deleteAppointmentTask(appointmentsDao).execute(appointment);
+    }
+
+    public void changeAppointment(String appointmentDateTime, String newDate, String newTime){
+        String newKey = newDate + " " + newTime;
+        allAppointmentsMap.put(newKey,allAppointmentsMap.get(appointmentDateTime));
+        new changeAppointmentTask(newDate,newTime,appointmentsDao).execute(allAppointmentsMap.get(appointmentDateTime));
+        allAppointmentsMap.remove(appointmentDateTime);
     }
 
     /*get appointments in background*/
@@ -237,6 +247,24 @@ public class DataRepository {
         @Override
         protected Void doInBackground(Appointments... appointment) {
             asyncAppointmentsDao.deleteAppointment(appointment[0]);
+            return null;
+        }
+    }
+
+    private static class changeAppointmentTask extends AsyncTask<Appointments,Void,Void>{
+        private AppointmentsDao asyncAppointmentsDao;
+        private String newDate;
+        private String newTime;
+
+        changeAppointmentTask(String newDate, String newTime, AppointmentsDao dao){
+            this.asyncAppointmentsDao = dao;
+            this.newDate = newDate;
+            this.newTime = newTime;
+        }
+
+        @Override
+        protected Void doInBackground(Appointments... appointments) {
+            asyncAppointmentsDao.changeAppointmentDayTime(appointments[0].getDate(),appointments[0].getTime(),newDate,newTime);
             return null;
         }
     }
