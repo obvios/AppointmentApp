@@ -15,16 +15,10 @@ import static android.content.ContentValues.TAG;
 public class AppViewModel extends AndroidViewModel {
     private DataRepository dataRepository;
 
-    private LiveData<List<Accounts>> allAccounts;
 
     public AppViewModel (Application application){
         super(application);
         dataRepository = new DataRepository(application);
-        allAccounts = dataRepository.getAllAccounts();
-    }
-
-    LiveData<List<Accounts>> getAllAccounts(){
-        return allAccounts;
     }
 
     public void insert(Accounts account){
@@ -70,5 +64,9 @@ public class AppViewModel extends AndroidViewModel {
     public void exportAppointments(String username){
         Log.d(TAG ,"in view model");
         dataRepository.downloadAppointments(username);
+    }
+
+    public boolean accountIsCreated(String username){
+        return dataRepository.accountIsCreated(username);
     }
 }

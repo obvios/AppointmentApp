@@ -15,30 +15,30 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class DataRepository implements AsyncResponse{
     private AccountsDao accountsDao;
     private AppointmentsDao appointmentsDao;
-    private LiveData<List<Accounts>> allAccounts;
     private HashMap<String,Appointments> allAppointmentsMap;
+    private HashSet<String> allAccountsSet;
     private Context fileContext;
 
     DataRepository(Application application){
         CalendarAppDatabase db = CalendarAppDatabase.getINSTANCE(application);
         accountsDao = db.accountsDao();
         appointmentsDao = db.appointmentsDao();
-        allAccounts = accountsDao.getAllAccounts();
         allAppointmentsMap = new HashMap<>();
+        allAccountsSet = new HashSet<>();
+        new mapAllAccountsTask(accountsDao).execute(allAccountsSet);
         new mapAllAppointmentsTask(appointmentsDao).execute(allAppointmentsMap);
         fileContext = null;
     }
 
-    public LiveData<List<Accounts>> getAllAccounts(){
-        return allAccounts;
-    }
 
     public void insertAccount(Accounts account){
+        allAccountsSet.add(account.getUsername());
         new insertAccountTask(accountsDao).execute(account);
     }
 
@@ -72,6 +72,7 @@ public class DataRepository implements AsyncResponse{
     }
 
     public void deleteAccount(Accounts account){
+        allAccountsSet.remove(account.getUsername());
         new deleteAccountTask(accountsDao).execute(account);
     }
 
@@ -92,6 +93,10 @@ public class DataRepository implements AsyncResponse{
         allAppointmentsMap.put(newKey, allAppointmentsMap.get(appointmentDateTime));
         new changeAppointmentTask(newDate, newTime, appointmentsDao).execute(allAppointmentsMap.get(appointmentDateTime));
         allAppointmentsMap.remove(appointmentDateTime);
+    }
+
+    public Boolean accountIsCreated(String username){
+        return allAccountsSet.contains(username);
     }
 
     public void downloadAppointments(String username){
@@ -305,6 +310,22 @@ public class DataRepository implements AsyncResponse{
         }
     }
 
+    private static class mapAllAccountsTask extends AsyncTask<HashSet<String>,Void,Void>{
+        private AccountsDao accountsDao;
+
+        mapAllAccountsTask(AccountsDao dao){
+            this.accountsDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(HashSet<String>... sets) {
+            List<Accounts> allAccounts = accountsDao.getAllAccounts();
+            for (Accounts account: allAccounts){
+                sets[0].add(account.getUsername());
+            }
+            return null;
+        }
+    }
     @Override
     public void onAccountAppointmentsRetrieved(List<Appointments> appointmentsList) {
         Log.d(TAG,"trying to write to file");

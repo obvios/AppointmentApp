@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -67,10 +68,17 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
                     StringBuilder text = new StringBuilder();
                     while ((line = br.readLine()) != null) {
                         String[] words = line.split("\\s+");
-                        Log.d(TAG, words[0]);
-                        Log.d(TAG, words[1]);
-                        Appointments newAppointment = new Appointments(words[0],words[1],fileNameEditText.getText().toString());
-                        appViewModel.insertAppointment(newAppointment);
+                        //if account does not exist, prompt user to create one first
+                        if(!appViewModel.accountIsCreated(fileNameEditText.getText().toString())){
+                            Toast toast = Toast.makeText(this.getContext(),"Must Create Account First",Toast.LENGTH_SHORT);
+                            toast.show();
+                        }else {
+                            //account exists, merge appointments
+                            Toast toast = Toast.makeText(this.getContext(),"Merging Appointments",Toast.LENGTH_SHORT);
+                            toast.show();
+                            Appointments newAppointment = new Appointments(words[0],words[1],fileNameEditText.getText().toString());
+                            appViewModel.insertAppointment(newAppointment);
+                        }
                     }
                     br.close();
 

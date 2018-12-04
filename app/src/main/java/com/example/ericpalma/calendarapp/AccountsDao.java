@@ -13,7 +13,7 @@ public interface AccountsDao {
     void insertAllAccounts(Accounts ... userAccounts);
 
     @Query("SELECT * FROM Accounts")
-    LiveData<List<Accounts>> getAllAccounts();
+    List<Accounts> getAllAccounts();
 
     @Query("SELECT * FROM Appointments WHERE apptUserName LIKE :usrName")
     List<Appointments> getAccountAppointments(String usrName);
