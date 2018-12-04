@@ -23,7 +23,6 @@ public class DataRepository implements AsyncResponse{
     private AppointmentsDao appointmentsDao;
     private HashMap<String,Appointments> allAppointmentsMap;
     private HashSet<String> allAccountsSet;
-    private Context fileContext;
 
     DataRepository(Application application){
         CalendarAppDatabase db = CalendarAppDatabase.getINSTANCE(application);
@@ -33,7 +32,6 @@ public class DataRepository implements AsyncResponse{
         allAccountsSet = new HashSet<>();
         new mapAllAccountsTask(accountsDao).execute(allAccountsSet);
         new mapAllAppointmentsTask(appointmentsDao).execute(allAppointmentsMap);
-        fileContext = null;
     }
 
 
@@ -100,9 +98,12 @@ public class DataRepository implements AsyncResponse{
     }
 
     public void downloadAppointments(String username){
-        Log.d(TAG,"init enter to repo");
         new getAccountAppointmentsTask(accountsDao,this).execute(username);
     }
+
+    /*Perform all functions on a separate thread.
+      Below are the async functions.
+    */
 
     /*get appointments in background*/
     private static class getAccountAppointmentsTask extends AsyncTask<String, Void, List<Appointments>> {
@@ -328,8 +329,6 @@ public class DataRepository implements AsyncResponse{
     }
     @Override
     public void onAccountAppointmentsRetrieved(List<Appointments> appointmentsList) {
-        Log.d(TAG,"trying to write to file");
-
         try {
             File root = Environment.getExternalStorageDirectory();
             File dir = new File (root.getAbsolutePath() + "/download");

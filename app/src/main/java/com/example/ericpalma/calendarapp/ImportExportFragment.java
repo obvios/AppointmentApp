@@ -17,17 +17,13 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 import static android.content.ContentValues.TAG;
 
 
-public class ImportExportFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class ImportExportFragment extends Fragment implements View.OnClickListener {
     private AppViewModel appViewModel;
     private Button importButton;
     private Button exportButton;
@@ -62,10 +58,11 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
                     File dir = new File (root.getAbsolutePath() + "/download");
                     File file = new File(dir,  fileNameEditText.getText().toString() + ".txt");
                     BufferedReader br = new BufferedReader(new FileReader(file));
-                    Log.d(TAG,"created buffered reader");
-                    String line;
+
                     //Read text from file
+                    String line;
                     StringBuilder text = new StringBuilder();
+
                     while ((line = br.readLine()) != null) {
                         String[] words = line.split("\\s+");
                         //if account does not exist, prompt user to create one first
@@ -74,10 +71,18 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
                             toast.show();
                         }else {
                             //account exists, merge appointments
-                            Toast toast = Toast.makeText(this.getContext(),"Merging Appointments",Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(this.getContext(),"Merging Appointment",Toast.LENGTH_SHORT);
                             toast.show();
-                            Appointments newAppointment = new Appointments(words[0],words[1],fileNameEditText.getText().toString());
-                            appViewModel.insertAppointment(newAppointment);
+
+                            //check for conflicts
+                            String apptDate = words[0] + " " + words[1];
+                            if(appViewModel.checkAvailability(apptDate)){
+                                Appointments newAppointment = new Appointments(words[0],words[1],fileNameEditText.getText().toString());
+                                appViewModel.insertAppointment(newAppointment);
+                            }else{
+                                toast = Toast.makeText(this.getContext(),"Conflict while merging appointment",Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
                         }
                     }
                     br.close();
@@ -87,21 +92,10 @@ public class ImportExportFragment extends Fragment implements View.OnClickListen
                 }
                 break;
             case R.id.import_export_exportButton:
-                Log.d(TAG,"clicked button");
                 appViewModel.exportAppointments(usernameEditText.getText().toString());
                 break;
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

@@ -16,7 +16,7 @@
         android:id="@+id/import_export_FileNameEditText"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="File Name (*.txt)"/>
+        android:hint="File Name (Username)"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
