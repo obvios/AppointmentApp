@@ -25,6 +25,7 @@
     <item android:title="Setting">
         <menu>
             <item android:title="Set Calendar Type" android:id="@+id/set_calendar_menuButton"/>
+            <item android:title="Set Notifications" android:id="@+id/set_notifications_menuButton"/>
         </menu>
     </item>
 

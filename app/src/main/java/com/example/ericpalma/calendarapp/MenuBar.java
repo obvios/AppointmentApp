@@ -134,6 +134,9 @@ public class MenuBar extends AppCompatActivity
         else if (id == R.id.import_export_menuButton) {
             fragmentClass = ImportExportFragment.class;
         }
+        else if (id == R.id.set_notifications_menuButton) {
+            fragmentClass = SetNotificationsFragment.class;
+        }
         else {
             fragmentClass = CalendarFragment.class;
         }
