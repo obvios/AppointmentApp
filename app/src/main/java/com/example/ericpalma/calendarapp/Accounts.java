@@ -1,6 +1,7 @@
 /*
  * Filename:	Accounts.java
  * Purpose:		Account class that holds all information pertaining to a user account
+ * Author:      Eric Palma
  */
 package com.example.ericpalma.calendarapp;
 
