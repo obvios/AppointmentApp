@@ -1,3 +1,7 @@
+/*
+ * Filename:	Accounts.java
+ * Purpose:		Account class that holds all information pertaining to a user account
+ */
 package com.example.ericpalma.calendarapp;
 
 import android.arch.persistence.room.*;
@@ -5,14 +9,14 @@ import android.support.annotation.NonNull;
 
 @Entity
 public class Accounts {
-    /*Properties*/
+    /*Define primary key for RoomDatabase*/
     @PrimaryKey
     @NonNull
     private String username;
 
     private String password;
     private String calendarType;
-    private String calendarColor;   // comment
+    private String calendarColor;
     private String userFirstName;
     private String userLastName;
 
