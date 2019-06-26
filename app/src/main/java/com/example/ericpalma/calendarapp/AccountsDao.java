@@ -1,3 +1,8 @@
+/*
+ * Filename:	AccountsDao.java
+ * Purpose:		Data Access Object interface for Accounts entity.
+ *              Defines database interactions for Accounts entity.
+ */
 package com.example.ericpalma.calendarapp;
 
 import android.arch.lifecycle.LiveData;
@@ -6,12 +11,15 @@ import java.util.List;
 
 @Dao
 public interface AccountsDao {
+    //insert Accounts object to RoomDatabase
     @Insert
     void insertUserAccount(Accounts userAccount1);
 
+    //insert multiple accounts at once to RoomDatabase
     @Insert
     void insertAllAccounts(Accounts ... userAccounts);
 
+    //get a list of all accounts in database
     @Query("SELECT * FROM Accounts")
     List<Accounts> getAllAccounts();
 
