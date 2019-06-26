@@ -12,52 +12,38 @@
         android:layout_height="wrap_content"
         android:text="Set Notifications"
         android:textSize="24sp"/>
-    <EditText
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:hint="Username"/>
-    <EditText
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:hint="Password"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Appointments"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your Appointments"
-        android:textSize="18sp"/>
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Notification Setting"
         android:textSize="18sp"/>
     <RadioGroup
+        android:id="@+id/set_notifications_fragment_RadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
+            android:id="@+id/set_notifications_fragment_RadioHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One hour before" />
         <RadioButton
+            android:id="@+id/set_notifications_fragment_RadioTwoHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Two hours before" />
         <RadioButton
+            android:id="@+id/set_notifications_fragment_RadioOneDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One day before" />
         <RadioButton
+            android:id="@+id/set_notifications_fragment_RadioDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Default" />
     </RadioGroup>
     <Button
+        android:id="@+id/set_notifications_fragment_SetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set"/>
