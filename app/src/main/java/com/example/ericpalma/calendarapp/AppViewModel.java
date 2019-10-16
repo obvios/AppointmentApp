@@ -1,3 +1,9 @@
+/*
+ * Filename:	AppViewModel.java
+ * Purpose:		The application's view model. Handles interactions between
+ *              application view and data repository.
+ * Author:      Eric Palma
+ */
 package com.example.ericpalma.calendarapp;
 
 import android.app.Application;
@@ -13,9 +19,12 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class AppViewModel extends AndroidViewModel {
+    //the application's data repository
     private DataRepository dataRepository;
 
-
+    //Constructor
+    //registers the application with the view model.
+    //Connects the application with the data repository
     public AppViewModel (Application application){
         super(application);
         dataRepository = new DataRepository(application);
@@ -62,7 +71,6 @@ public class AppViewModel extends AndroidViewModel {
     }
 
     public void exportAppointments(String username){
-        Log.d(TAG ,"in view model");
         dataRepository.downloadAppointments(username);
     }
 
