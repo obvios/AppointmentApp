@@ -5,7 +5,6 @@
  * Author:      Eric Palma
  */
 package com.example.ericpalma.calendarapp;
-
 import android.app.Application;
 import android.app.TaskStackBuilder;
 import android.arch.lifecycle.AndroidViewModel;
