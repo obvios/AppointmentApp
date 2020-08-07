@@ -9,4 +9,4 @@
 Help users easily track and share their appointments through simple Android app.
 
 
-![alt text](https://github.com/obvios/AppointmentApp/blob/master/Home.PNG)
+![alt text](https://github.com/obvios/AppointmentApp/blob/master/Home.png)
