@@ -6,7 +6,7 @@
 * Android app
 
 ## Purpose
-Help users easily track and share their appointments through simple Android app.
+Help users easily track and share their appointments through a simple Android app.
 
 ![alt text](https://github.com/obvios/AppointmentApp/blob/master/Home.png)
 ![alt text](https://github.com/obvios/AppointmentApp/blob/master/Create%20Appointment.png)
